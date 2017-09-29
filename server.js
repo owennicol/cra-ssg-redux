@@ -8,8 +8,6 @@ const normalizePort = port => parseInt(port, 10)
 const app = express()
 const dev = app.get('env') !== 'production'
 
-console.log('process.env.PORT:', process.env.PORT)
-
 const PORT = normalizePort(process.env.PORT || 4000)
 
 if (!dev) {
@@ -28,9 +26,7 @@ if (dev) {
   app.use(morgan('dev'))
 }
 
-const server = createServer(app)
-
-server.listen(PORT, err => {
-  if (err) throw err
-  console.log('Server started')
+app.listen(PORT, err => {
+  if (err) throw Error(err)
+  console.log('server running')
 })
